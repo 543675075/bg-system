@@ -8,12 +8,15 @@ export function request(config){
   })
 
  
-  // 请求拦截
-  // example.Interceptors.request.use(aaa=>{
-  //   return aaa
-  // },err=>{
-  //   return err
-  // })
+  //请求拦截
+  example.interceptors.request.use(config=>{
+    console.log(config)
+    // 需要授权的 API ，必须在请求头中使用 Authorization 字段提供 token 令牌
+    config.headers.Authorization = window.sessionStorage.getItem("token")
+    return config
+  },err=>{
+    return err
+  })
   // // 响应拦截
   // example.Interceptors.response.use(result=>{
   //   return resule

@@ -8,7 +8,7 @@
       <!-- 表单 -->
       <el-form class="form" :model="form" :rules="rules" ref="form">
         <el-form-item prop="name">
-          <el-input prefix-icon="iconfont icon-icon" v-model="form.name"></el-input>
+          <el-input prefix-icon="iconfont icon-yonghu" v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item prop="pw">
           <el-input show-password prefix-icon="iconfont icon-mima" v-model="form.pw"></el-input>
@@ -68,6 +68,8 @@ export default {
             window.sessionStorage.setItem("token",res.data.data.token)
             // 跳转到后台系统页面
             this.$router.push("/system")
+            // 登陆成功
+            this.$message.success("登陆成功")
           }
         });
       });
