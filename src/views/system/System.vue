@@ -18,6 +18,7 @@
         <el-menu
           :collapse= "collapse"
           unique-opened
+          router
           :collapse-transition = "false"
           default-active="2"
           class="el-menu-vertical-demo"
@@ -33,7 +34,7 @@
               <span>{{item.authName}}</span>
             </template>
             <!-- 2级菜单 -->
-            <el-menu-item :index="subItem.id" v-for="subItem in item.children" :key="subItem.id">
+            <el-menu-item :index="subItem.path" v-for="subItem in item.children" :key="subItem.path">
               <!-- 2级菜单模板区 -->
               <template slot="title">
                 <i class="el-icon-menu"></i>
@@ -44,7 +45,11 @@
         </el-menu>
       </el-aside>
       <!-- 主体 -->
-      <el-main>Main</el-main>
+      <el-main>
+        <keep-alive>
+          <router-view></router-view> 
+        </keep-alive>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -66,7 +71,7 @@ export default {
         "orders": "iconfont icon-dingdan",
         "reports": "iconfont icon-shujutongji",
       },
-      collapse: true
+      collapse: false
     };
   },
   created() {
@@ -81,7 +86,7 @@ export default {
     // 获取左侧菜单列表数据
     _menuData() {
       menuData().then(res => {
-        console.log(res);
+        // console.log(res);
         this.authName = res.data.data;
       });
     },
@@ -148,7 +153,6 @@ export default {
   background-color: #eaedf1;
   color: #ccc;
   text-align: center;
-  line-height: 160px;
 }
 
 .el-container {

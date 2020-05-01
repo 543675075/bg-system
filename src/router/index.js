@@ -4,6 +4,8 @@ Vue.use(VueRouter)
 
 import Login from '../views/login/Login'
 import System from '../views/system/System'
+const Welcome = ()=>import ("../components/welcome.vue")
+const User = ()=>import ("../components/user.vue")
 const routes = [
   {
     path: "/",
@@ -15,7 +17,21 @@ const routes = [
   },
   {
     path: "/system",
-    component: System
+    component: System,
+    children: [
+      {
+        path: "/system",
+        redirect: "/welcome"
+      },
+      {
+        path: "/welcome",
+        component: Welcome
+      },
+      {
+        path: "/users",
+        component: User
+      }
+    ]
   }
 ]
 const router = new VueRouter({

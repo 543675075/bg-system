@@ -3,14 +3,16 @@ import axios from "axios"
 export function request(config){
   // 创建axios实例
   const example = axios.create({
-    baseURL: 'http://timemeetyou.com:8889/api/private/v1',
+    // baseURL: 'http://timemeetyou.com:8889/api/private/v1',
+    baseURL: 'http://47.115.124.102:8888/api/private/v1/',
+    // baseURL: 'http://127.0.0.1:8888/api/private/v1/',
     timeout: 4000
   })
 
  
   //请求拦截
   example.interceptors.request.use(config=>{
-    console.log(config)
+    // console.log(config)
     // 需要授权的 API ，必须在请求头中使用 Authorization 字段提供 token 令牌
     config.headers.Authorization = window.sessionStorage.getItem("token")
     return config

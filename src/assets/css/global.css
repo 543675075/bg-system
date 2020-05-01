@@ -4,3 +4,7 @@ body,html,#app{
   width: 100%;
   height: 100%;
 }
+.el-popover{
+  background-color: #fff !important;
+  box-shadow: 1px 1px 10px #ccc;
+}
